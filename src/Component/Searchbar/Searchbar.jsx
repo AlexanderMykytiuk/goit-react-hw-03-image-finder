@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Searchbar.module.css';
 import PropTypes from 'prop-types';
+
 class Searchbar extends React.Component {
   state = {
     query: '',

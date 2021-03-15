@@ -1,5 +1,4 @@
 import React from 'react';
-// import defaultImage from '../default.jpg';
 import PropTypes from 'prop-types';
 import styles from './ImageGalleryItem.module.css';
 const ImageGalleryItem = ({ img, alt, onClick }) => {
@@ -12,7 +11,7 @@ const ImageGalleryItem = ({ img, alt, onClick }) => {
 
 ImageGalleryItem.defaultProps = {
   img:
-    'https://st.depositphotos.com/1106005/3146/i/600/depositphotos_31468817-stock-photo-coming-soon-sign.jpg',
+    'https://static.wikia.nocookie.net/one-piece-fan-dnd/images/8/82/No-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg/revision/latest?cb=20201007034238',
 };
 
 ImageGalleryItem.propTypes = {
@@ -22,4 +21,3 @@ ImageGalleryItem.propTypes = {
 };
 
 export default ImageGalleryItem;
-© 2021 GitHub, Inc.

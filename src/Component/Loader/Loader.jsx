@@ -6,13 +6,7 @@ import styles from './Loader.module.css';
 const LoaderComponent = () => {
   return (
     <div className={styles.Loader}>
-      <Loader
-        type="Circles"
-        color="#00BFFF"
-        height={100}
-        width={100}
-        timeout={3000}
-      />
+      <Loader type="BallTriangle" color="#18ce64" height={100} width={100} />
     </div>
   );
 };

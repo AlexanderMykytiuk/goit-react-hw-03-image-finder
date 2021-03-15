@@ -25,6 +25,7 @@ html {
     max-width: 100%;
     height: auto;
   }
+  
   .container {
     display: grid;
     grid-template-columns: 1fr;

@@ -1,21 +1,22 @@
-import React from 'react';
-import ImageGalleryItem from '../ImageGalleryItem';
-import styles from './ImageGallery.module.css';
-import Searchbar from '../Searchbar';
-import hitsApi from '../../services/api';
-import Button from '../Button';
-import Modal from '../Modal';
-import Loader from '../Loader';
+import React, { Component } from "react";
+import ImageGalleryItem from "../ImageGalleryItem";
+import Searchbar from "../Searchbar";
+import hitsApi from "../../services/newsApi";
+import Button from "../Button";
+import Modal from "../Modal";
+import Loader from "../Loader";
 
-class ImageGallery extends React.Component {
+import styles from "./ImageGallery.module.css";
+
+class ImageGallery extends Component {
   state = {
     hits: [],
     currentPage: 1,
-    serchQuery: '',
+    serchQuery: "",
     isLoading: false,
     error: null,
-    largeImageURL: '',
-    largeImageALT: '',
+    largeImageURL: "",
+    largeImageALT: "",
     scroll: false,
   };
   componentDidUpdate(prevProps, prevState) {
@@ -24,7 +25,7 @@ class ImageGallery extends React.Component {
     }
   }
 
-  onChangeQuery = query => {
+  onChangeQuery = (query) => {
     this.setState({
       serchQuery: query,
       currentPage: 1,
@@ -35,7 +36,7 @@ class ImageGallery extends React.Component {
   };
 
   toggleModal = (url, alt) => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       showModal: !prevState.showModal,
       largeImage: url,
       largeImageURL: url,
@@ -52,16 +53,16 @@ class ImageGallery extends React.Component {
     this.setState({ isLoading: true });
     hitsApi
       .fetchHits(options)
-      .then(obj => obj.data)
-      .then(data => {
+      .then((obj) => obj.data)
+      .then((data) => {
         // console.log(data.hits);
-        this.setState(prevState => ({
+        this.setState((prevState) => ({
           hits: [...prevState.hits, ...data.hits],
           currentPage: prevState.currentPage + 1,
           scroll: true,
         }));
       })
-      .catch(error => this.setState({ error }))
+      .catch((error) => this.setState({ error }))
       .finally(() => this.setState({ isLoading: false }));
   };
 
@@ -82,7 +83,7 @@ class ImageGallery extends React.Component {
           </Modal>
         )}
         <ul className={styles.ImageGallery}>
-          {hits.map(item => (
+          {hits.map((item) => (
             <ImageGalleryItem
               img={item.webformatURL}
               alt={item.tags}
@@ -94,7 +95,7 @@ class ImageGallery extends React.Component {
         {scroll &&
           window.scrollTo({
             top: document.documentElement.scrollHeight,
-            behavior: 'smooth',
+            behavior: "smooth",
           })}
         {isLoading && <Loader />}
         {shouldrenderLoadMore && <Button onClick={this.fetchHits} />}
