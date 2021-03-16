@@ -19,6 +19,7 @@ class ImageGallery extends Component {
     largeImageALT: "",
     scroll: false,
   };
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.serchQuery !== this.state.serchQuery) {
       this.fetchHits();
@@ -53,7 +54,6 @@ class ImageGallery extends Component {
     this.setState({ isLoading: true });
     hitsApi
       .fetchHits(options)
-      .then((obj) => obj.data)
       .then((data) => {
         // console.log(data.hits);
         this.setState((prevState) => ({
@@ -83,12 +83,12 @@ class ImageGallery extends Component {
           </Modal>
         )}
         <ul className={styles.ImageGallery}>
-          {hits.map((item) => (
+          {hits.map(({webformatURL, tags, id, largeImageURL}) => (
             <ImageGalleryItem
-              img={item.webformatURL}
-              alt={item.tags}
-              key={item.id}
-              onClick={() => this.toggleModal(item.largeImageURL, item.tags)}
+              img={webformatURL}
+              alt={tags}
+              key={id}
+              onClick={() => this.toggleModal(largeImageURL, tags)}
             />
           ))}
         </ul>
